@@ -1,0 +1,31 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+  <div class='container'>
+    <p class='tag-text text-center text-secondary text-xl font-bold'>{blok.tagName}</p>
+  </div>
+</div>
+
+<style>
+  .container {
+    /* TODO use main CSS to define primary colour */
+    /* TODO properly define sizes after removing tailwind */
+    background-color: purple;
+    border-radius: 15px;
+    height: 30px;
+    min-width: 80px;
+    max-width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px;
+  }
+  .tag-text {
+    color: white;
+    font-size: 16px;
+  }
+</style>
