@@ -15,6 +15,12 @@ export default defineConfig({
         feature: 'storyblok/Feature',
         grid: 'storyblok/Grid',
         teaser: 'storyblok/Teaser',
+        pageTitle: 'storyblok/PageTitle',
+        // tag: 'storyblok/Tag',
+
+        // TODO how can I define imagePost differently,
+        // whether it's used inside a Grid or for a separate page?
+        // imagePost: 'storyblok/ImagePost',
       },
     }),
     tailwind(),
