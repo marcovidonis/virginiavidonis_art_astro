@@ -1,5 +1,6 @@
 ---
 import { renderRichText } from '@storyblok/astro';
+import instagramLogo from '../assets/instagram-logo.svg';
 
 const { post } = Astro.props;
 
@@ -9,7 +10,6 @@ const {
 
 const htmlDescription = renderRichText(description);
 
-// TODO replace link word with instagram icon
 ---
 
 <div class='container'>
@@ -17,7 +17,11 @@ const htmlDescription = renderRichText(description);
     <img src={image.filename} />
     <div class='overlay-container'>
       <h1 class='post-title'>{title}</h1>
-      {!!instagramLink?.url && <a href={instagramLink.url} target='_blank' rel='noreferrer'>link</a>}
+      {!!instagramLink && !!instagramLink.url && (
+        <a href={instagramLink.url} target='_blank' rel='noreferrer'>
+          <img src={instagramLogo} class='instagram-logo' />
+        </a>
+      )}
     </div>
   </div>
   <div class='description-container'>
@@ -37,6 +41,11 @@ const htmlDescription = renderRichText(description);
   .img-container {
     position: relative;
     height: 300px;
+  }
+  .img-container > img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
   }
   .overlay-container {
     position: absolute;
@@ -64,9 +73,8 @@ const htmlDescription = renderRichText(description);
   .post-title {
     font-weight: 800;
   }
-  img {
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+  .instagram-logo {
+    width: 24px;
+    height: 24px;
   }
 </style>
