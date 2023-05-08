@@ -1,0 +1,34 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import { useStoryblokApi } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import ImagePost from './ImagePost.astro';
+
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get('cdn/stories', {
+  // version: import.meta.env.DEV ? "draft" : "published",
+  version: 'draft',
+  content_type: 'imagePost',
+});
+
+const { stories: posts } = data;
+
+// TODO add media queries to make grid responsive
+// TODO use graphQL API to fetch posts, using pagination
+
+---
+
+<div class='grid-container'>
+  {!!posts.length && posts.map((post) => (
+    <ImagePost post={post.content} />
+  ))}
+</div>
+
+<style>
+  .grid-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+</style>

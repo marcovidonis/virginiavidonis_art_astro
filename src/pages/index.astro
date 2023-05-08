@@ -1,20 +1,24 @@
 ---
-import { useStoryblokApi } from '@storyblok/astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-import BaseLayout from '../layouts/BaseLayout.astro'
+import { useStoryblokApi } from '@storyblok/astro';
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImagesGrid from '../storyblok/ImagesGrid.astro';
 
-const sbApi = useStoryblokApi()
+const sbApi = useStoryblokApi();
 const { data } = await sbApi.get('cdn/stories/home', {
   version: 'draft', // TODO change to published, perhaps based on env
-})
+});
 
-const story = data.story
+const { story } = data;
 
 // TODO perhaps we can just import all components that are stored in one folder on Storyblok,
 // and map through that to present all images. Perhaps through graphQl?
 // This way we don't need to use the Grid inside Page, but define our own Astro component.
+
+// TODO the Home component from storyblok will probably only have the title and blurb
 ---
 
 <BaseLayout>
   <StoryblokComponent blok={story.content} />
+  <ImagesGrid />
 </BaseLayout>

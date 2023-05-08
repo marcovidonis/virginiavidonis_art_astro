@@ -1,36 +1,33 @@
 ---
-import { storyblokEditable } from '@storyblok/astro';
-import Tag from './Tag.astro';
+import { renderRichText } from '@storyblok/astro';
 
-const { blok } = Astro.props;
-// const { title, image, description, instagramLinks, tags} = blok;
-console.log(blok);
+const { post } = Astro.props;
+
+const {
+  title, image, description, instagramLink,
+} = post;
+
+const htmlDescription = renderRichText(description);
 
 // TODO replace link word with instagram icon
 ---
 
-<div {...storyblokEditable(blok)} class='container'>
+<div class='container'>
   <div class='img-container'>
-    <img src={blok.image.filename} />
+    <img src={image.filename} />
     <div class='overlay-container'>
-      <h1 class='post-title'>{blok.title}</h1>
-      <a href={blok.instagramLink.url}>link</a>
+      <h1 class='post-title'>{title}</h1>
+      <a href={instagramLink.url}>link</a>
     </div>
   </div>
-  <div class='tags-container'>
-    <!-- {!!blok.tags.length && blok.tags.map((tag) => (
-      <Tag blok={tag} size='small'></Tag>
-    ))} -->
-    {!!blok.tags.length && blok.tags.map((tag) => (
-      <a class='tag' href='#'>{tag.tagName}</a>
-    ))}
+  <div class='description-container'>
+    <Fragment set:html={htmlDescription} />
   </div>
 </div>
 
 <style>
   .container {
     margin: 30px;
-    margin-bottom: 100px;
     width: 200px;
     display: flex;
     flex-direction: column;
@@ -46,20 +43,23 @@ console.log(blok);
     right: 0;
     left: 0;
     bottom: 0;
-    height: 60px;
+    height: 70px;
     border-radius: 0 0 8px 8px;
     padding: 8px 10px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
     color: white;
     font-size: 14px;
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
   }
-  .tags-container {
+  .description-container {
+    font-size: 12px;
     width: 100%;
-    display: flex;
-    /* justify-content: flex-start; */
+    height: 60px;
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
   }
   .post-title {
     font-weight: 800;
@@ -68,14 +68,5 @@ console.log(blok);
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-  }
-  .tag {
-    color: #444;
-    font-size: 12px;
-    margin-right: 5px;
-    min-width: 100px;
-  }
-  .tag + .tag::before {
-    content: '- ';
   }
 </style>
