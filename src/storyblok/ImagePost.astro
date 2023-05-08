@@ -17,7 +17,7 @@ const htmlDescription = renderRichText(description);
     <img src={image.filename} />
     <div class='overlay-container'>
       <h1 class='post-title'>{title}</h1>
-      <a href={instagramLink.url}>link</a>
+      {!!instagramLink?.url && <a href={instagramLink.url} target='_blank' rel='noreferrer'>link</a>}
     </div>
   </div>
   <div class='description-container'>
