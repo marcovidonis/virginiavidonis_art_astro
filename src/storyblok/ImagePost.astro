@@ -1,0 +1,81 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import Tag from './Tag.astro';
+
+const { blok } = Astro.props;
+// const { title, image, description, instagramLinks, tags} = blok;
+console.log(blok);
+
+// TODO replace link word with instagram icon
+---
+
+<div {...storyblokEditable(blok)} class='container'>
+  <div class='img-container'>
+    <img src={blok.image.filename} />
+    <div class='overlay-container'>
+      <h1 class='post-title'>{blok.title}</h1>
+      <a href={blok.instagramLink.url}>link</a>
+    </div>
+  </div>
+  <div class='tags-container'>
+    <!-- {!!blok.tags.length && blok.tags.map((tag) => (
+      <Tag blok={tag} size='small'></Tag>
+    ))} -->
+    {!!blok.tags.length && blok.tags.map((tag) => (
+      <a class='tag' href='#'>{tag.tagName}</a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .container {
+    margin: 30px;
+    margin-bottom: 100px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-container {
+    position: relative;
+    height: 300px;
+  }
+  .overlay-container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    border-radius: 0 0 8px 8px;
+    padding: 8px 10px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    color: white;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+  .tags-container {
+    width: 100%;
+    display: flex;
+    /* justify-content: flex-start; */
+  }
+  .post-title {
+    font-weight: 800;
+  }
+  img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .tag {
+    color: #444;
+    font-size: 12px;
+    margin-right: 5px;
+    min-width: 100px;
+  }
+  .tag + .tag::before {
+    content: '- ';
+  }
+</style>

@@ -17,6 +17,7 @@ export default defineConfig({
         teaser: 'storyblok/Teaser',
         pageTitle: 'storyblok/PageTitle',
         tag: 'storyblok/Tag',
+        imagePost: 'storyblok/ImagePost',
 
         // TODO how can I define imagePost differently,
         // whether it's used inside a Grid or for a separate page?

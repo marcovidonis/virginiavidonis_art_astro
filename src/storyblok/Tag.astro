@@ -1,13 +1,12 @@
 ---
 import { storyblokEditable } from '@storyblok/astro';
 
-const { blok } = Astro.props;
+const { blok, size } = Astro.props;
 ---
 
-<div {...storyblokEditable(blok)}>
-  <div class='container'>
-    <p class='tag-text text-center text-secondary text-xl font-bold'>{blok.tagName}</p>
-  </div>
+<div {...storyblokEditable(blok)} class=`container ${size === 'small' ? 'small' : 'medium'}`>
+    <!-- <p class='tag-text text-center text-secondary text-xl font-bold'>{blok.tagName}</p> -->
+    <p class=''>{blok.tagName}</p>
 </div>
 
 <style>
@@ -15,17 +14,27 @@ const { blok } = Astro.props;
     /* TODO use main CSS to define primary colour */
     /* TODO properly define sizes after removing tailwind */
     background-color: purple;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    display: block;
+    color: white;
+  }
+  .small {
+    font-size: 12px;
+    border-radius: 10px;
+    height: 20px;
+    min-width: 30px;
+    /* max-width: 120px; */
+    /* width: 100%; */
+    margin: 5px 10px 5px 0;
+  }
+  .medium {
+    font-size: 16px;
     border-radius: 15px;
     height: 30px;
     min-width: 80px;
     max-width: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 10px 20px;
-  }
-  .tag-text {
-    color: white;
-    font-size: 16px;
   }
 </style>
