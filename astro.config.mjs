@@ -16,6 +16,7 @@ export default defineConfig({
         // grid: 'storyblok/Grid',
         // teaser: 'storyblok/Teaser',
         pageTitle: 'storyblok/PageTitle',
+        pageContent: 'storyblok/PageContent',
         tag: 'storyblok/Tag',
         imagePost: 'storyblok/ImagePost',
         postsList: 'storyblok/PostsList',

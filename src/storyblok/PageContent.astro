@@ -1,0 +1,12 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import RichTextRenderer from '@storyblok/astro/RichTextRenderer.astro';
+
+const { blok } = Astro.props;
+const { content } = blok;
+
+---
+
+<div {...storyblokEditable(blok)}>
+  <RichTextRenderer richTextData={content} />
+</div>
