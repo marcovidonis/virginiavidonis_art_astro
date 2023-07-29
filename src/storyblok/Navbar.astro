@@ -1,0 +1,33 @@
+---
+import { useStoryblokApi  } from '@storyblok/astro';
+
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get('cdn/stories', {
+  version: import.meta.env.DEV ? 'draft' : 'published',
+  content_type: 'page',
+});
+
+const { stories: pages } = data;
+
+---
+<nav>
+  <ul>
+    <li><a href='/'>Home</a></li>
+    {pages?.filter((p) => p.name !== 'Home').map((page) => (
+      <li><a href={page.slug}>{page.name}</a></li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  ul {
+    display: flex;
+    padding: 15px 30px;
+  }
+  li {
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 35px;
+  }
+</style>
