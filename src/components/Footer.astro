@@ -1,10 +1,45 @@
 ---
+import { useStoryblokApi  } from '@storyblok/astro';
+import socials from '../util/socials';
+import instagramLogo from '../assets/instagram-logo-black.svg';
+
+const storyblokApi = useStoryblokApi();
+
 const date = new Date();
 const year = date.getFullYear();
+
+const { data } = await storyblokApi.get('cdn/stories', {
+  version: import.meta.env.DEV ? 'draft' : 'published',
+  content_type: 'page',
+});
+
+const { stories: pages } = data;
+
+const socialsIcons = {
+  Instagram: instagramLogo,
+};
+
 ---
 
 <footer>
-  <p>&#169; {year} Virginia Vidonis Art</p>
+  <ul>
+    <li><a href='/'>Home</a></li>
+    {pages?.filter((p) => p.name !== 'Home').map((page) => (
+      <li><a href={page.slug}>{page.name}</a></li>
+    ))}
+  </ul>
+
+  <ul>
+    {socials?.map((social) => (
+      <li>
+        <a href={social.url}>
+          <img src={socialsIcons[social.name]} alt={`${social.name} logo`} class='socials-logo' />
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class='copyright'>&#169; {year} Virginia Vidonis Art</p>
 </footer>
 
 <style>
@@ -13,7 +48,30 @@ const year = date.getFullYear();
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 50px 30px;
-    background-color: aquamarine;
+    padding: 20px 5px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  footer > * {
+    margin-bottom: 20px;
+  }
+  ul {
+    display: flex;
+  }
+  li {
+    font-size: 16px;
+    margin-right: 25px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .socials-logo {
+    width: 34px;
+    height: 34px;
+  }
+  .copyright {
+    font-size: 14px;
   }
 </style>
