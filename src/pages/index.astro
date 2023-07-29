@@ -2,7 +2,6 @@
 import { useStoryblokApi } from '@storyblok/astro';
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ImagesGrid from '../storyblok/ImagesGrid.astro';
 
 const sbApi = useStoryblokApi();
 const { data } = await sbApi.get('cdn/stories/home', {
@@ -20,5 +19,4 @@ const { story } = data;
 
 <BaseLayout>
   <StoryblokComponent blok={story.content} />
-  <ImagesGrid />
 </BaseLayout>

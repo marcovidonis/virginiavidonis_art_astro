@@ -1,5 +1,5 @@
 ---
-import { useStoryblokApi } from '@storyblok/astro';
+import { useStoryblokApi, storyblokEditable } from '@storyblok/astro';
 import ImagePost from './ImagePost.astro';
 
 const storyblokApi = useStoryblokApi();
@@ -10,13 +10,14 @@ const { data } = await storyblokApi.get('cdn/stories', {
 });
 
 const { stories: posts } = data;
+const { blok } = Astro.props;
 
 // TODO add media queries to make grid responsive
-// TODO use graphQL API to fetch posts, using pagination
+// TODO use graphQL API to fetch posts, using pagination ???
 
 ---
 
-<div class='grid-container'>
+<div class='grid-container' {...storyblokEditable(blok)}>
   {!!posts.length && posts.map((post) => (
     <ImagePost post={post.content} />
   ))}
