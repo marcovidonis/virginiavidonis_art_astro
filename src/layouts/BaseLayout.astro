@@ -1,6 +1,7 @@
 ---
 import Navbar from '../storyblok/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import './baseLayout.css';
 ---
 
 <!DOCTYPE html>
@@ -14,7 +15,16 @@ import Footer from '../components/Footer.astro';
 
   <body>
     <Navbar />
-    <slot />
+    <div class='container'>
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style>
