@@ -2,8 +2,8 @@
   "name": "astro-starter-default",
   "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --mode development",
+    "start": "astro dev --mode development",
     "build": "astro build",
     "preview": "astro preview"
   },
