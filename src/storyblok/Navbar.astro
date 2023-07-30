@@ -15,7 +15,7 @@ const { stories: pages } = data;
   <ul>
     <li><a href='/'>Home</a></li>
     {pages?.filter((p) => p.name !== 'Home').map((page) => (
-      <li><a href={page.slug}>{page.name}</a></li>
+      <li><a href={`/${page.slug}`}>{page.name}</a></li>
     ))}
   </ul>
 </nav>

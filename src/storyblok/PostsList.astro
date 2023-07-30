@@ -1,6 +1,6 @@
 ---
 import { useStoryblokApi, storyblokEditable } from '@storyblok/astro';
-import ImagePost from './ImagePost.astro';
+import ImageTile from '../components/ImageTile.astro';
 
 const storyblokApi = useStoryblokApi();
 
@@ -19,7 +19,7 @@ const { blok } = Astro.props;
 
 <div class='grid-container' {...storyblokEditable(blok)}>
   {!!posts.length && posts.map((post) => (
-    <ImagePost post={post.content} />
+    <ImageTile blok={post.content} slug={`/posts/${post.slug}`} />
   ))}
 </div>
 
