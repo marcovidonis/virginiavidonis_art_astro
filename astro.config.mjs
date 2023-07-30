@@ -11,18 +11,11 @@ export default defineConfig({
       accessToken: STORYBLOK_TOKEN,
       components: {
         page: 'storyblok/Page',
-        // feature: 'storyblok/Feature',
-        // grid: 'storyblok/Grid',
-        // teaser: 'storyblok/Teaser',
         pageTitle: 'storyblok/PageTitle',
         pageContent: 'storyblok/PageContent',
         tag: 'storyblok/Tag',
         imagePost: 'storyblok/ImagePost',
         postsList: 'storyblok/PostsList',
-
-        // TODO how can I define imagePost differently,
-        // whether it's used inside a Grid or for a separate page?
-        // imagePost: 'storyblok/ImagePost',
       },
     }),
   ],
