@@ -14,17 +14,24 @@ import './baseLayout.css';
   </head>
 
   <body>
-    <Navbar />
-    <div class='container'>
-      <slot />
+    <div class='outer-container'>
+      <Navbar />
+      <div class='main-content'>
+        <slot />
+      </div>
+      <Footer />
     </div>
-    <Footer />
   </body>
 </html>
 
 <style>
-  .container {
+  .outer-container {
+    min-height: 100vh;
+    position: relative;
+  }
+  .main-content {
     max-width: 800px;
     margin: 0 auto;
+    padding-bottom: 12rem;
   }
 </style>
