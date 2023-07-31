@@ -22,10 +22,8 @@ const htmlDescription = renderRichText(description);
   </div>
 
   {!!instagramLink && !!instagramLink.url && (
-    <a href={instagramLink.url} class='instagram-link' target='_blank' rel='noreferrer'>
-      See this content on Instagram
-      <img src={instagramLogo} class='instagram-logo' />
-    </a>
+    <a href={instagramLink.url} class='instagram-link' target='_blank' rel='noreferrer'>See this content on Instagram</a>
+    <img src={instagramLogo} class='instagram-logo' />
   )}
 
   <Fragment set:html={htmlDescription} />
@@ -33,20 +31,21 @@ const htmlDescription = renderRichText(description);
 
 <style>
   .img-container {
-    min-height: 300px;
-    max-height: 60vh;
-    height: 60vh;
-    max-width: 100%;
+    min-height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   .img-container > img {
-    max-height: 100%;
+    max-height: 60vh;
     max-width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
   }
   .instagram-logo {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
   }
   .instagram-link {
     text-decoration: none;
