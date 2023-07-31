@@ -2,16 +2,16 @@
 import { renderRichText, storyblokEditable } from '@storyblok/astro';
 import instagramLogo from '../assets/instagram-logo-gradient.svg';
 import PageTitle from './PageTitle.astro';
+import Tag from './Tag.astro';
 
 const { blok } = Astro.props;
 
 const {
-  image, description, instagramLink,
+  image, description, instagramLink, tags
 } = blok;
 
+console.log(tags);
 const htmlDescription = renderRichText(description);
-
-//TODO display tags
 ---
 
 <div {...storyblokEditable(blok)}>
@@ -27,6 +27,10 @@ const htmlDescription = renderRichText(description);
   )}
 
   <Fragment set:html={htmlDescription} />
+
+  {!!tags && tags.map((tag) => (
+    <Tag key={tag.tagName} blok={tag} />
+  ))}
 </div>
 
 <style>
