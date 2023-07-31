@@ -7,10 +7,9 @@ import Tag from './Tag.astro';
 const { blok } = Astro.props;
 
 const {
-  image, description, instagramLink, tags
+  image, description, instagramLink, tags,
 } = blok;
 
-console.log(tags);
 const htmlDescription = renderRichText(description);
 ---
 
@@ -22,15 +21,21 @@ const htmlDescription = renderRichText(description);
   </div>
 
   {!!instagramLink && !!instagramLink.url && (
-    <a href={instagramLink.url} class='instagram-link' target='_blank' rel='noreferrer'>See this content on Instagram</a>
-    <img src={instagramLogo} class='instagram-logo' />
+    <div class='ig-link-container'>
+      <a href={instagramLink.url} class='instagram-link' target='_blank' rel='noreferrer'>See this content on Instagram</a>
+      <img src={instagramLogo} class='instagram-logo' />
+    </div>
   )}
 
   <Fragment set:html={htmlDescription} />
 
-  {!!tags && tags.map((tag) => (
-    <Tag key={tag.tagName} blok={tag} />
-  ))}
+  {!!tags && (
+    <p class='tags-list'>Tags:
+    <span class='tags-colour'>
+      {tags.map((t) => `#${t.tagName.replaceAll(/#/ig, '')}`).join(', ')}
+    </span>
+    </p>
+  )}
 </div>
 
 <style>
@@ -46,6 +51,9 @@ const htmlDescription = renderRichText(description);
     object-fit: contain;
     border-radius: 8px;
   }
+  .ig-link-container {
+    margin-bottom: 30px;
+  }
   .instagram-logo {
     width: 20px;
     height: 20px;
@@ -58,5 +66,12 @@ const htmlDescription = renderRichText(description);
   .instagram-link:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+  .tags-list {
+    margin-top: 50px;
+    font-size: 14px;
+  }
+  .tags-colour {
+    color: #888;
   }
 </style>
