@@ -2,7 +2,6 @@
 import { renderRichText, storyblokEditable } from '@storyblok/astro';
 import instagramLogo from '../assets/instagram-logo-gradient.svg';
 import PageTitle from './PageTitle.astro';
-import Tag from './Tag.astro';
 
 const { blok } = Astro.props;
 
@@ -27,7 +26,9 @@ const htmlDescription = renderRichText(description);
     </div>
   )}
 
-  <Fragment set:html={htmlDescription} />
+  <div class='main-text'>
+    <Fragment set:html={htmlDescription} />
+  </div>
 
   {!!tags && (
     <p class='tags-list'>Tags:
@@ -53,6 +54,7 @@ const htmlDescription = renderRichText(description);
   }
   .ig-link-container {
     margin-bottom: 30px;
+    font-size: 14px;
   }
   .instagram-logo {
     width: 20px;
@@ -73,5 +75,11 @@ const htmlDescription = renderRichText(description);
   }
   .tags-colour {
     color: #888;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .ig-link-container {
+      font-size: 12px;
+    }
   }
 </style>
