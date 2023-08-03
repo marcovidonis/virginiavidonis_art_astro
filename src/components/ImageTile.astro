@@ -1,10 +1,11 @@
 ---
 import { renderRichText } from '@storyblok/astro';
+import { Image } from 'astro:assets';
 
 const { blok, slug } = Astro.props;
 
 const {
-  title, image, description,
+  title, image, description, alt,
 } = blok;
 
 const htmlDescription = renderRichText(description);
@@ -12,7 +13,12 @@ const htmlDescription = renderRichText(description);
 
 <div class='container'>
   <a href={slug} class='img-container'>
-    <img src={image.filename} />
+    <Image
+      src={image.filename}
+      alt={alt}
+      width={250}
+      height={600}
+    />
     <div class='overlay-container'>
       <h1 class='post-title'>{title}</h1>
     </div>
