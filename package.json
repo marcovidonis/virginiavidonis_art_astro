@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@storyblok/astro": "^2.5.4",
-    "astro": "^2.0.16"
+    "astro": "^2.10",
+    "sharp": "^0.32.4"
   },
   "devDependencies": {
     "@vitejs/plugin-basic-ssl": "^1.0.1",
