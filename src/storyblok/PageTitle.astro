@@ -5,5 +5,17 @@ const { blok } = Astro.props;
 ---
 
 <div {...storyblokEditable(blok)}>
-  <h1 class='text-center text-secondary text-xl font-bold'>{blok.title}</h1>
+  <h1>{blok.title}</h1>
 </div>
+
+<style>
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 24px;
+    }
+  }
+</style>

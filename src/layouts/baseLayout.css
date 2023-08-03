@@ -1,6 +1,29 @@
+:root {
+  --main-text-colour: black;
+}
+
 body {
   margin: 0;
   min-height: 100%;
   min-width: 100%;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.main-text {
+  font-size: 16px;
+  color: var(--main-text-colour);
+}
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: var(--main-text-colour);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-text {
+    font-size: 14px;
+  }
 }
