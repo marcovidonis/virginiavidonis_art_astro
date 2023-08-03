@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig, sharpImageService } from 'astro/config'
 import storyblok from '@storyblok/astro'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 
@@ -24,5 +24,11 @@ export default defineConfig({
     server: {
       https: true,
     },
+  },
+  experimental: {
+    assets: true,
+  },
+  image: {
+    service: sharpImageService(),
   },
 })

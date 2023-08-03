@@ -1,14 +1,14 @@
 ---
 import { renderRichText, storyblokEditable } from '@storyblok/astro';
+import { Image } from 'astro:assets';
 import instagramLogo from '../assets/instagram-logo-gradient.svg';
 import PageTitle from './PageTitle.astro';
 
 const { blok } = Astro.props;
 
 const {
-  image, description, instagramLink, tags,
+  image, description, instagramLink, tags, alt,
 } = blok;
-
 const htmlDescription = renderRichText(description);
 ---
 
@@ -16,13 +16,19 @@ const htmlDescription = renderRichText(description);
   <PageTitle blok={blok} />
 
   <div class='img-container'>
-    <img src={image.filename} />
+    <Image
+      src={image.filename}
+      alt={alt}
+      width={800}
+      height={800}
+      quality={100}
+    />
   </div>
 
   {!!instagramLink && !!instagramLink.url && (
     <div class='ig-link-container'>
       <a href={instagramLink.url} class='instagram-link' target='_blank' rel='noreferrer'>See this content on Instagram</a>
-      <img src={instagramLogo} class='instagram-logo' />
+      <img src={instagramLogo.src} class='instagram-logo' />
     </div>
   )}
 
@@ -42,6 +48,7 @@ const htmlDescription = renderRichText(description);
 <style>
   .img-container {
     min-height: 200px;
+    max-height: 60vh;
     width: 100%;
     display: flex;
     justify-content: center;
